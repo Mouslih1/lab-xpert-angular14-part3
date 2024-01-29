@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +9,6 @@ import { DashboardComponent } from './dashboard/components/dashboard/dashboard.c
 import { PatientsComponent } from './patients/components/patients/patients.component';
 import { SavePatientComponent } from './patients/components/save-patient/save-patient.component';
 import { UpdatePatientComponent } from './patients/components/update-patient/update-patient.component';
-import { PatientComponent } from './patients/services/patient/patient.component';
 import { UsersComponent } from './users/components/users/users.component';
 import { SaveUserComponent } from './users/components/save-user/save-user.component';
 import { UpdateUserComponent } from './users/components/update-user/update-user.component';
@@ -36,6 +37,7 @@ import { ResultsComponent } from './results/components/results/results.component
 import { SaveResultComponent } from './results/components/save-result/save-result.component';
 import { UpdateResultComponent } from './results/components/update-result/update-result.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,6 @@ import { UpdateResultComponent } from './results/components/update-result/update
     PatientsComponent,
     SavePatientComponent,
     UpdatePatientComponent,
-    PatientComponent,
     UsersComponent,
     SaveUserComponent,
     UpdateUserComponent,
@@ -74,7 +75,9 @@ import { UpdateResultComponent } from './results/components/update-result/update
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
