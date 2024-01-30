@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/Entity/patient';
 import { PatientService } from '../../services/patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Sexe } from 'src/app/Entity/sexe';
 
 @Component({
   selector: 'app-update-patient',
@@ -12,6 +13,7 @@ export class UpdatePatientComponent implements OnInit {
 
   id: number;
   patient: Patient = new Patient();
+  genderOptions = Object.values(Sexe);
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
 

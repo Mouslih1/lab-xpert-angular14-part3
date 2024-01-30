@@ -12,6 +12,7 @@ import { Sexe } from 'src/app/Entity/sexe';
 export class SavePatientComponent implements OnInit {
 
   patient: Patient = new Patient();
+  genderOptions = Object.values(Sexe);
 
   constructor(private router: Router, private patientService: PatientService) { }
 

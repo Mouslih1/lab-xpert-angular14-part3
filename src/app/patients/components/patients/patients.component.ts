@@ -30,7 +30,7 @@ export class PatientsComponent implements OnInit {
 
   updatePatient(id: number)
   {
-    this.router.navigate(['patients/update-patient', id]);
+    this.router.navigate(['patients/update', id]);
   }
 
   deletePatient(id: number)
