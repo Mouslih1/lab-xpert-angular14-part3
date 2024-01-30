@@ -1,1 +1,102 @@
-<p>fournisseurs works!</p>
+<div class="page-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <div class="page-title">
+        <h4>Fournisseur List</h4>
+        <h6>Manage your Fournisseurs</h6>
+      </div>
+      <div class="page-btn">
+        <a routerLink="/add/fournisseur" class="btn btn-added">
+          <img src="assets/img/icons/plus.svg" alt="img" />
+          Add Fournisseur</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="table-top">
+          <div class="wordset">
+            <ul>
+              <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                  <img src="assets/img/icons/pdf.svg" alt="img"/>
+                </a>
+              </li>
+              <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel">
+                  <img src="assets/img/icons/excel.svg" alt="img"/>
+                </a>
+              </li>
+              <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                  <img src="assets/img/icons/printer.svg" alt="img" /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>
+                <label class="checkboxs">
+                  <input type="checkbox" id="select-all" />
+                  <span class="checkmarks"></span>
+                </label>
+              </th>
+              <th>name complet</th>
+              <th>societe name</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fournisseur of fournisseurs">
+              <td>
+                <label class="checkboxs">
+                  <input type="checkbox" />
+                  <span class="checkmarks"></span>
+                </label>
+              </td>
+              <td>
+                {{ fournisseur.nom }}
+              </td>
+              <td>{{ fournisseur.societeName }}</td>
+              <td>
+                <a (click)="updateFournisseur(fournisseur.id)" class="me-3">
+                  <img ngSrc="assets/img/icons/edit.svg" alt="img" height="20" width="16" />
+                </a>
+                <a (click)="deleteFournisseur(fournisseur.id)" class="me-3 confirm-text">
+                  <img ngSrc="assets/img/icons/delete.svg" alt="img" height="24" width="24"/>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="dataTables_length mb-3" id="DataTables_Table_0_length">
+            <label>
+              <select name="DataTables_Table_0_length"
+                      aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </label>
+          </div>
+          <div class="dataTables_paginate paging_numbers">
+
+            <ul class="pagination">
+              <li class="paginate_button page-item active">
+                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">1</a>
+              </li>
+            </ul>
+          </div>
+          <div class="dataTables_info mt-4" id="DataTables_Table_0_info" role="status" aria-live="polite">
+            1 - 14 of 14 items
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

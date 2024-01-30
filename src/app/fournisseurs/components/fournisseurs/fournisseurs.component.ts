@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FournisseurService } from "../../services/fournisseur.service";
+import { Fournisseur } from "../../../Entity/Fournisseur";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-fournisseurs',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FournisseursComponent implements OnInit {
 
-  constructor() { }
+  fournisseurs: Fournisseur[];
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private fournisseurService: FournisseurService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.getFournisseursList();
+  }
+
+  getFournisseursList() {
+    this.fournisseurService.getFournisseursList().subscribe(data => {
+      this.fournisseurs = data;
+      this.fournisseurs.sort((a, b) => a.id - b.id);
+    });
+  }
+
+  updateFournisseur(id: number) {
+    this.router.navigate(['/update/fournisseur', id]);
+  }
+
+  deleteFournisseur(id: number) {
+    this.fournisseurService.deleteFournisseur(id).subscribe(data => {
+      console.log(data);
+      this.getFournisseursList();
+    })
+  }
 }
