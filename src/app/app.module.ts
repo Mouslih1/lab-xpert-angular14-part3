@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +9,6 @@ import { DashboardComponent } from './dashboard/components/dashboard/dashboard.c
 import { PatientsComponent } from './patients/components/patients/patients.component';
 import { SavePatientComponent } from './patients/components/save-patient/save-patient.component';
 import { UpdatePatientComponent } from './patients/components/update-patient/update-patient.component';
-import { PatientComponent } from './patients/services/patient/patient.component';
 import { UsersComponent } from './users/components/users/users.component';
 import { SaveUserComponent } from './users/components/save-user/save-user.component';
 import { UpdateUserComponent } from './users/components/update-user/update-user.component';
@@ -35,6 +36,8 @@ import { UpdateReactifComponent } from './reactifs/components/update-reactif/upd
 import { ResultsComponent } from './results/components/results/results.component';
 import { SaveResultComponent } from './results/components/save-result/save-result.component';
 import { UpdateResultComponent } from './results/components/update-result/update-result.component';
+import { EchontillonAnalysesComponent } from './echontillons/components/echontillon-analyses/echontillon-analyses.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +46,6 @@ import { UpdateResultComponent } from './results/components/update-result/update
     PatientsComponent,
     SavePatientComponent,
     UpdatePatientComponent,
-    PatientComponent,
     UsersComponent,
     SaveUserComponent,
     UpdateUserComponent,
@@ -70,11 +72,15 @@ import { UpdateResultComponent } from './results/components/update-result/update
     UpdateReactifComponent,
     ResultsComponent,
     SaveResultComponent,
-    UpdateResultComponent
+    UpdateResultComponent,
+    EchontillonAnalysesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

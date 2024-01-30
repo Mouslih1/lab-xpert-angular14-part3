@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Echontillon } from 'src/app/Entity/echontillon';
+import { EchontillonService } from '../../services/echontillon.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-echontillons',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EchontillonsComponent implements OnInit {
 
-  constructor() { }
+  echontillons: Echontillon[];
 
-  ngOnInit(): void {
+  constructor(private echontillonService: EchontillonService, private router: Router) { }
+
+  ngOnInit(): void
+  {
+    this.getEchontillons();
   }
 
+  getEchontillons()
+  {
+    this.echontillonService.getEchontillons().subscribe(data => {
+      this.echontillons = data;
+    })
+  }
+
+  echontillonAnalyseDetail(id: number)
+  {
+    this.router.navigate(['echontillons/echontillon-analyses', id])
+  }
 }
