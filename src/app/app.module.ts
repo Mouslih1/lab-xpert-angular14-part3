@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +36,7 @@ import { UpdateReactifComponent } from './reactifs/components/update-reactif/upd
 import { ResultsComponent } from './results/components/results/results.component';
 import { SaveResultComponent } from './results/components/save-result/save-result.component';
 import { UpdateResultComponent } from './results/components/update-result/update-result.component';
+import { EchontillonAnalysesComponent } from './echontillons/components/echontillon-analyses/echontillon-analyses.component';
 
 
 @NgModule({
@@ -71,13 +72,15 @@ import { UpdateResultComponent } from './results/components/update-result/update
     UpdateReactifComponent,
     ResultsComponent,
     SaveResultComponent,
-    UpdateResultComponent
+    UpdateResultComponent,
+    EchontillonAnalysesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

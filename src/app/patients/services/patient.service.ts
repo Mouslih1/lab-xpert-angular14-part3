@@ -36,4 +36,9 @@ export class PatientService {
   {
     return this.httpClient.delete(this.baseURL + '/' + id + '/delete');
   }
+
+  searchPatientByName(name: string): Observable<Patient[]>
+  {
+    return this.httpClient.get<Patient[]>(this.baseURL + '/patient?name=' + name );
+  }
 }

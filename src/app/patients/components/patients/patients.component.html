@@ -16,14 +16,18 @@
       <div class="card-body">
         <div class="table-top">
           <!-- TODO: ADD SEARCH INPUT IN THIS PLACE -->
+          <form>
+
           <div class="row">
             <div class="col">
               <div class="form-group d-flex align-items-center">
-                <input placeholder="search..." name="search" type="text" class="form-control">
-                <button class="btn btn-filters ms-2"><img src="assets/img/icons/search-whites.svg" alt="img"></button>
-              </div>
+                  <input placeholder="search..." formControlName="name" name="name" type="text" class="form-control">
+                  <button (click)="searchPatient()" class="btn btn-filters ms-2"><img src="assets/img/icons/search-whites.svg" alt="img"></button>
+               </div>
             </div>
           </div>
+        </form>
+
 
           <div class="wordset">
             <ul>

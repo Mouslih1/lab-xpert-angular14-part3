@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/Entity/patient';
 import { PatientService } from '../../services/patient.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-patients',
@@ -23,7 +24,6 @@ export class PatientsComponent implements OnInit {
   getPatients()
   {
     this.patientService.getAllPatients().subscribe(data => {
-      console.log(data)
       this.patients = data;
     });
   }
@@ -36,5 +36,10 @@ export class PatientsComponent implements OnInit {
   deletePatient(id: number)
   {
     this.patientService.deletePatient(id).subscribe(() => this.getPatients());
+  }
+
+  searchPatient()
+  {
+
   }
 }

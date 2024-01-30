@@ -22,7 +22,6 @@ export class SavePatientComponent implements OnInit {
   savePatient()
   {
     this.patientService.savePatient(this.patient).subscribe(data => {
-      console.log(data),
       this.goToPatientList()
     });
   }
