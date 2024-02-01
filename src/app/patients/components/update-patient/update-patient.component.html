@@ -45,7 +45,7 @@
                 <input [(ngModel)]="patient.ville" placeholder="City" name="ville" type="text">
               </div>
               <div class="form-group">
-                <label for="gender">Gender</label>
+                <label >Gender</label>
                 <select [(ngModel)]="patient.sexe" name="sexe" class="form-select">
                   <option *ngFor="let gender of genderOptions" [value]="gender">{{ gender }}</option>
                 </select>

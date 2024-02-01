@@ -1,1 +1,77 @@
-<p>update-reactif works!</p>
+<div class="page-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <div class="page-title">
+        <h4>Reactif Management</h4>
+        <h6>Update Reactif</h6>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="row">
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Reactif Id</label>
+                <input [(ngModel)]="reactif.id" name="fournisseurId" type="text" readonly  >
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Reactif Name</label>
+                <input [(ngModel)]="reactif.nom" name="reactifName"  type="text">
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Reactif Descreption</label>
+                <input [(ngModel)]="reactif.description" name="reactifDescreption"  type="text">
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label for="experation-date">Experation Date</label>
+                <div class="input-group">
+                  <input [(ngModel)]="reactif.dateExp" type="date" name="experation-date" id="experation-date" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Stock Quantity</label>
+                <input [(ngModel)]="reactif.quantityStock" name="quantity" #quantity="ngModel" type="text" pattern="^[0-9]*$">
+                <div *ngIf="quantity.errors?.['pattern']" style="color: red;">
+                  Please enter a valid number.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Choose Company</label>
+                <select class="form-select" [(ngModel)]="reactif.fournisseurs" name="company" [multiple]="fournisseurs">
+                  <option [ngValue]="null" disabled> </option>
+                  <option *ngFor="let fournisseur of fournisseurs" [ngValue]="fournisseur">
+                    {{ fournisseur.societeName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            </div>
+            <div class="col-lg-12">
+              <button href="javascript:void(0);" class="btn btn-submit me-2">Update</button>
+              <button (click)="gotoReactifList()" class="btn btn-cancel">Cancel</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

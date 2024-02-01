@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lab-xpert-angular14-for-part2';
+  isClicked = false;
+
+  changeColor() {
+    this.isClicked = !this.isClicked;
+  }
 }
