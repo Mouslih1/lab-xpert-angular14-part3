@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EchontillonMaterial } from 'src/app/Entity/echontillon-material';
+import { EchontillonMaterialService } from '../../services/echontillon-material.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-echontillon-materials',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EchontillonMaterialsComponent implements OnInit {
 
-  constructor() { }
+  echontillonMaterial: EchontillonMaterial[];
 
-  ngOnInit(): void {
+  constructor(private echontillonMaterialService: EchontillonMaterialService, private router: Router) { }
+
+  ngOnInit(): void
+  {
+
   }
 
 }

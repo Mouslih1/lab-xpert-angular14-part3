@@ -8,6 +8,7 @@ import { EchontillonsComponent } from './echontillons/components/echontillons/ec
 import { EchontillonAnalysesComponent } from './echontillons/components/echontillon-analyses/echontillon-analyses.component';
 import { SaveEchontillonComponent } from './echontillons/components/save-echontillon/save-echontillon.component';
 import { UpdateEchontillonComponent } from './echontillons/components/update-echontillon/update-echontillon.component';
+import { EchontillonMaterialsComponent } from './echontillon-materials/components/echontillon-materials/echontillon-materials.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'echontillons/save', component: SaveEchontillonComponent},
   { path: 'echontillons', component: EchontillonsComponent},
   { path: 'echontillons/update/:id', component: UpdateEchontillonComponent},
+  { path: 'echontillon-materials', component: EchontillonMaterialsComponent},
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 
 ];
