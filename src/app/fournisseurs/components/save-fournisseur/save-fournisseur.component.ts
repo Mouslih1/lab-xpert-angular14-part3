@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Fournisseur } from "../../../Entity/Fournisseur";
 import { FournisseurService } from "../../services/fournisseur.service";
 import { Router } from '@angular/router';
+import { Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-save-fournisseur',
   templateUrl: './save-fournisseur.component.html',
@@ -25,7 +27,7 @@ export class SaveFournisseurComponent implements OnInit {
       })
   }
   goToFournisseurList(){
-    this.router.navigate(['/fournisseur']);
+    this.router.navigate(['/fournisseurs']);
   }
   onSubmit(){
     this.saveFournisseur();

@@ -15,8 +15,7 @@ export class FournisseursComponent implements OnInit {
   constructor(
     private router: Router,
     private fournisseurService: FournisseurService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getFournisseursList();
@@ -30,12 +29,11 @@ export class FournisseursComponent implements OnInit {
   }
 
   updateFournisseur(id: number) {
-    this.router.navigate(['/update/fournisseur', id]);
+    this.router.navigate(['/fournisseurs/update', id]);
   }
 
   deleteFournisseur(id: number) {
     this.fournisseurService.deleteFournisseur(id).subscribe(data => {
-      console.log(data);
       this.getFournisseursList();
     })
   }

@@ -27,7 +27,7 @@ export class UpdateFournisseurComponent implements OnInit {
   }
 
   goToFournisseurList(){
-    this.router.navigate(['/fournisseur']);
+    this.router.navigate(['/fournisseurs']);
   }
 
   updateFournisseur(){
