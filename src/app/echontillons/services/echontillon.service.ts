@@ -21,4 +21,19 @@ export class EchontillonService {
   {
     return this.httpClient.get<Echontillon>(this.baseURL + '/' + id);
   }
+
+  saveEchontillon(echontillon: Echontillon): Observable<Object>
+  {
+    return this.httpClient.post(this.baseURL + '/add', echontillon);
+  }
+
+  deleteEchontillon(id: number): Observable<Object>
+  {
+    return this.httpClient.delete(this.baseURL + '/' + id + '/delete');
+  }
+
+  updateEchontillon(id: number, echontillon: Echontillon): Observable<Object>
+  {
+    return this.httpClient.put(this.baseURL + '/' + id + '/update', echontillon);
+  }
 }

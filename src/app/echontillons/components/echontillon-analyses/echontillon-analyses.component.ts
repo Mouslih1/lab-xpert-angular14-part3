@@ -19,6 +19,7 @@ export class EchontillonAnalysesComponent implements OnInit {
   {
     this.id = this.route.snapshot.params['id'];
     this.echontillonService.getEchontillonById(this.id).subscribe(data => {
+      console.log(data);
       this.echontillon = data;
     });
   }

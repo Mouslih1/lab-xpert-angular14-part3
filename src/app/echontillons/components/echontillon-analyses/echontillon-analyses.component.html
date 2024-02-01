@@ -2,75 +2,35 @@
   <div class="content">
     <div class="page-header">
       <div class="page-title">
-        <h4>Echontillon with his analyses Details</h4>
-        <h6>View echontillon details</h6>
+        <h4>Echantillon with his Analyses</h4>
+        <h6>Detail echontillon</h6>
       </div>
     </div>
     <div class="card">
       <div class="card-body">
         <div class="card-sales-split">
-          <h2>{{ echontillon.codeEchontillon }} with his analyses Detail</h2>
-          <ul>
-            <li>
-              <a href=""><img src="assets/img/icons/edit.svg" alt="img"></a>
-            </li>
-            <li>
-              <a href=""><img src="assets/img/icons/pdf.svg" alt="img"></a>
-            </li>
-            <li>
-              <a href=""><img src="assets/img/icons/excel.svg" alt="img"></a>
-            </li>
-            <li>
-              <a href=""><img src="assets/img/icons/printer.svg" alt="img"></a>
-            </li>
+          <h2>{{ echontillon.codeEchontillon }} - With Analyses</h2>
+          <ul class="icon-list">
+            <li><a href="#"><img src="assets/img/icons/edit.svg" alt="Modifier"></a></li>
+            <li><a href="#"><img src="assets/img/icons/pdf.svg" alt="PDF"></a></li>
+            <li><a href="#"><img src="assets/img/icons/excel.svg" alt="Excel"></a></li>
+            <li><a href="#"><img src="assets/img/icons/printer.svg" alt="Imprimer"></a></li>
           </ul>
         </div>
-        <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
-            <tr class="top">
-              <td colspan="6" style="padding: 5px;vertical-align: top;">
-                <table style="width: 100%;line-height: inherit;text-align: left;">
-                  <tbody>
-                    <tr>
-                      <td style="padding:5px;vertical-align:top;text-align:left;padding-bottom:20px">
-                        <font style="vertical-align: inherit;margin-bottom:25px;">
-                          <font
-                            style="vertical-align: inherit;font-size:14px;color:#7367F0;font-weight:600;line-height: 35px; ">
-                           <h1>ECHONTILLON DETAIL :</h1> </font>
-                        </font><br>
-                        <font style="vertical-align: inherit;margin-bottom:25px;">
-                          <font
-                            style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
-                            <h5>Echontillon code :</h5> {{ echontillon.codeEchontillon }}
-                          </font>
-                        </font><br>
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
-                            <h5>Patient first name :</h5> {{ echontillon.patient.nom }}</font>
-                        </font><br>
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
-                            <h5>Patient last name :</h5> {{ echontillon.patient.prenom }}</font>
-                        </font><br>
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
-                            <h5>Date prélevement :</h5> {{ echontillon.datePrelevement }}</font>
-                        </font><br>
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
-                            <h5 class="text-danger">Analyse of this echontillon :</h5></font>
-                        </font>
-                        <font *ngFor="let analyse of echontillon.analyses" style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
-                            {{ analyse.typeAnalyse }}</font><br>
-                        </font>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-        </table>
-        <div class="container">
+        <div class="echantillon-details">
+          <h3 class="">Echontillon details :</h3>
+          <ul class="list-unstyled mt-2">
+            <li><strong>Code Echantillon :</strong> {{ echontillon.codeEchontillon }}</li>
+            <li><strong>Patient last name :</strong> {{ echontillon.patient.nom }}</li>
+            <li><strong>Patient first name :</strong> {{ echontillon.patient.prenom }}</li>
+            <li><strong>Date prélèvement :</strong> {{ echontillon.datePrelevement }}</li>
+            <li><strong>Analyses :</strong></li>
+            <ul>
+              <li *ngFor="let analyse of echontillon.analyses">{{ analyse.typeAnalyse }}</li>
+            </ul>
+          </ul>
+        </div>
+        <div class="container m-4">
           <button (click)="goToEchontillonsList()" class="btn btn-cancel">Cancel</button>
         </div>
       </div>
