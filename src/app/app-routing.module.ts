@@ -6,15 +6,18 @@ import { SavePatientComponent } from './patients/components/save-patient/save-pa
 import { UpdatePatientComponent } from './patients/components/update-patient/update-patient.component';
 import { EchontillonsComponent } from './echontillons/components/echontillons/echontillons.component';
 import { EchontillonAnalysesComponent } from './echontillons/components/echontillon-analyses/echontillon-analyses.component';
+import { SaveEchontillonComponent } from './echontillons/components/save-echontillon/save-echontillon.component';
+import { UpdateEchontillonComponent } from './echontillons/components/update-echontillon/update-echontillon.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'patients', component: PatientsComponent},
   { path: 'patients/save', component: SavePatientComponent},
   { path: 'patients/update/:id', component: UpdatePatientComponent},
-  {path: 'echontillons/echontillon-analyses/:id', component: EchontillonAnalysesComponent},
+  { path: 'echontillons/echontillon-analyses/:id', component: EchontillonAnalysesComponent},
+  { path: 'echontillons/save', component: SaveEchontillonComponent},
   { path: 'echontillons', component: EchontillonsComponent},
-
+  { path: 'echontillons/update/:id', component: UpdateEchontillonComponent},
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 
 ];

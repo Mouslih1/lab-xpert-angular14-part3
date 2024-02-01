@@ -30,4 +30,14 @@ export class EchontillonsComponent implements OnInit {
   {
     this.router.navigate(['echontillons/echontillon-analyses', id])
   }
+
+  deleteEchontillon(id: number)
+  {
+    this.echontillonService.deleteEchontillon(id).subscribe(() => this.getEchontillons());
+  }
+
+  updateEchontillon(id: number)
+  {
+    this.router.navigate(['echontillons/update', id]);
+  }
 }

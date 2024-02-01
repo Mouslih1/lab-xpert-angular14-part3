@@ -3,6 +3,7 @@ import { TypeAnalyse } from "./type-analyse";
 
 export class Analyse
 {
+  id: number;
   typeAnalyse: TypeAnalyse;
   commantaires: string;
   statusAnalyse: StatusAnalyse;

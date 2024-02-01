@@ -77,13 +77,13 @@
                 </td>
                 <td>{{ echontillon.patient.nom }}</td>
                 <td>{{ echontillon.datePrelevement }}</td>
-                <td><a (click)="echontillonAnalyseDetail(echontillon.id)">analyse</a></td>
+                <td><a class="link-warning" (click)="echontillonAnalyseDetail(echontillon.id)">analyse</a></td>
 
                 <td>
-                  <a class="me-3">
+                  <a (click)="updateEchontillon(echontillon.id)" class="me-3">
                     <img src="assets/img/icons/edit.svg" alt="img" />
                   </a>
-                  <a class="me-3 confirm-text">
+                  <a (click)="deleteEchontillon(echontillon.id)" class="me-3 confirm-text">
                     <img src="assets/img/icons/delete.svg" alt="img" />
                   </a>
                 </td>
