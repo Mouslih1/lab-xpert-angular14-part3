@@ -1,0 +1,39 @@
+<div class="page-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <div class="page-title">
+        <h4>Echantillon with his Analyses</h4>
+        <h6>Detail echontillon</h6>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-sales-split">
+          <h2>{{ echontillon.codeEchontillon }} - With Analyses</h2>
+          <ul class="icon-list">
+            <li><a href="#"><img src="assets/img/icons/edit.svg" alt="Modifier"></a></li>
+            <li><a href="#"><img src="assets/img/icons/pdf.svg" alt="PDF"></a></li>
+            <li><a href="#"><img src="assets/img/icons/excel.svg" alt="Excel"></a></li>
+            <li><a href="#"><img src="assets/img/icons/printer.svg" alt="Imprimer"></a></li>
+          </ul>
+        </div>
+        <div class="echantillon-details">
+          <h3 class="">Echontillon details :</h3>
+          <ul class="list-unstyled mt-2">
+            <li><strong>Code Echantillon :</strong> {{ echontillon.codeEchontillon }}</li>
+            <li><strong>Patient last name :</strong> {{ echontillon.patient.nom }}</li>
+            <li><strong>Patient first name :</strong> {{ echontillon.patient.prenom }}</li>
+            <li><strong>Date prélèvement :</strong> {{ echontillon.datePrelevement }}</li>
+            <li><strong>Analyses :</strong></li>
+            <ul>
+              <li *ngFor="let analyse of echontillon.analyses">{{ analyse.typeAnalyse }}</li>
+            </ul>
+          </ul>
+        </div>
+        <div class="container m-4">
+          <button (click)="goToEchontillonsList()" class="btn btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
