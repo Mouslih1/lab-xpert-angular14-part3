@@ -6,6 +6,7 @@ import { Patient } from 'src/app/Entity/patient';
 import { PatientService } from 'src/app/patients/services/patient.service';
 import { Analyse } from 'src/app/Entity/analyse';
 import { AnalyseService } from 'src/app/analyses/services/analyse.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-save-echontillon',
@@ -14,25 +15,35 @@ import { AnalyseService } from 'src/app/analyses/services/analyse.service';
 })
 export class SaveEchontillonComponent implements OnInit {
 
-  echontillon: Echontillon = new Echontillon();
+  //echontillon: Echontillon = new Echontillon();
+  echontillonForm: FormGroup;
   patients: any;
   analyses: Analyse[];
 
 
-  constructor(private analyseService: AnalyseService, private echontillonService: EchontillonService, private router: Router, private patientService: PatientService) { }
+  constructor(private analyseService: AnalyseService,
+    private echontillonService: EchontillonService,
+    private router: Router,
+    private patientService: PatientService,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void
   {
+    this.echontillonForm = this.fb.group({
+      patient: [null, [Validators.required]],
+      datePrelevement: [null, [Validators.required]],
+      analyses: [null, [Validators.required]]
+    });
     this.getPatients();
     this.getAnalyses();
   }
 
   saveEchontillon()
   {
-    const seletedPatient = this.patients.find(patient => patient.id == this.echontillon.patient);
-    this.echontillon.patient = seletedPatient;
+    const seletedPatient = this.patients.find(patient => patient.id == this.echontillonForm.value.patient);
+    this.echontillonForm.value.patient = seletedPatient;
 
-    this.echontillonService.saveEchontillon(this.echontillon).subscribe(data => {
+    this.echontillonService.saveEchontillon(this.echontillonForm.value).subscribe(data => {
       console.log(data);
       this.goToEchontillonList();
     });
@@ -45,7 +56,10 @@ export class SaveEchontillonComponent implements OnInit {
 
   onSubmit()
   {
-    this.saveEchontillon();
+    if(this.echontillonForm.valid)
+    {
+      this.saveEchontillon();
+    }
   }
 
   getPatients()

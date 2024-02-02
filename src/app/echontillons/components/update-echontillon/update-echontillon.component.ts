@@ -5,6 +5,7 @@ import { EchontillonService } from '../../services/echontillon.service';
 import { AnalyseService } from 'src/app/analyses/services/analyse.service';
 import { PatientService } from 'src/app/patients/services/patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-echontillon',
@@ -14,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateEchontillonComponent implements OnInit {
 
   id: number;
-  echontillon: Echontillon = new Echontillon();
+  echontillonForm: FormGroup;
   patients: any;
   analyses: Analyse[];
 
@@ -23,17 +24,21 @@ export class UpdateEchontillonComponent implements OnInit {
     private analyseService: AnalyseService,
     private patientService: PatientService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void
   {
+    this.echontillonForm = this.fb.group({
+      patient: [null, [Validators.required]],
+      datePrelevement: [null, [Validators.required]],
+      analyses: [null, [Validators.required]]
+    });
     this.id = this.route.snapshot.params['id'];
-
     this.getPatients();
     this.getAnalyses();
     this.echontillonService.getEchontillonById(this.id).subscribe(data => {
-      this.echontillon = data;
-      console.log(this.echontillon);
+      this.echontillonForm.patchValue(data);
     });
   }
 
@@ -44,15 +49,19 @@ export class UpdateEchontillonComponent implements OnInit {
 
   updateEchontillon()
   {
-    const seletedPatient = this.patients.find(patient => patient.id == this.echontillon.patient);
-    this.echontillon.patient = seletedPatient;
+    const seletedPatient = this.patients.find(patient => patient.id == this.echontillonForm.value.patient);
+    this.echontillonForm.value.patient = seletedPatient;
 
-    return this.echontillonService.updateEchontillon(this.id, this.echontillon).subscribe(() => this.goToEchontillonList());
+    console.log(this.echontillonForm.value.patient)
+    return this.echontillonService.updateEchontillon(this.id, this.echontillonForm.value).subscribe(() => this.goToEchontillonList());
   }
 
   onSubmit()
   {
-    this.updateEchontillon();
+    if(this.echontillonForm.valid)
+    {
+      this.updateEchontillon();
+    }
   }
 
   getPatients()

@@ -4,6 +4,7 @@ import { EchontillonMaterialService } from '../../services/echontillon-material.
 import { ActivatedRoute, Router } from '@angular/router';
 import { EchontillonService } from 'src/app/echontillons/services/echontillon.service';
 import { MaterialService } from 'src/app/materials/services/material.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-echontillon-materials',
@@ -13,7 +14,7 @@ import { MaterialService } from 'src/app/materials/services/material.service';
 export class UpdateEchontillonMaterialsComponent implements OnInit {
 
   id: number;
-  echontillonMaterial: EchontillonMaterial = new EchontillonMaterial();
+  echontillonMaterialForm: FormGroup;
   materials: any;
   echontillons: any;
 
@@ -21,13 +22,19 @@ export class UpdateEchontillonMaterialsComponent implements OnInit {
      private router: Router,
      private echontillonService: EchontillonService,
      private materialService: MaterialService,
-     private route: ActivatedRoute) { }
+     private route: ActivatedRoute,
+     private fb: FormBuilder) { }
 
      ngOnInit(): void
      {
+      this.echontillonMaterialForm = this.fb.group({
+        echontillon: [null, [Validators.required]],
+        material: [null, [Validators.required]],
+        quantity: [null, [Validators.required]]
+      });
        this.id = this.route.snapshot.params['id'];
        this.echontillonMaterialService.getEchontillonMaterialById(this.id).subscribe(data => {
-        this.echontillonMaterial = data;
+        this.echontillonMaterialForm.patchValue(data);
        });
        this.getEchontillons();
        this.getMaterials();
@@ -35,16 +42,16 @@ export class UpdateEchontillonMaterialsComponent implements OnInit {
 
      updateEchontillonMaterial()
      {
-       const seletedEchontillon = this.echontillons.find(echontillon => echontillon.id == this.echontillonMaterial.echontillon);
-       this.echontillonMaterial.echontillon = seletedEchontillon;
+       const seletedEchontillon = this.echontillons.find(echontillon => echontillon.id == this.echontillonMaterialForm.value.echontillon);
+       this.echontillonMaterialForm.value.echontillon = seletedEchontillon;
 
-       console.log(this.echontillonMaterial.material)
-       const seletedMaterial = this.materials.find(material => material.id == this.echontillonMaterial.material);
+       console.log(this.echontillonMaterialForm.value.material)
+       const seletedMaterial = this.materials.find(material => material.id == this.echontillonMaterialForm.value.material);
        console.log(seletedMaterial);
-       this.echontillonMaterial.material = seletedMaterial;
-       console.log(this.echontillonMaterial)
+       this.echontillonMaterialForm.value.material = seletedMaterial;
+       console.log(this.echontillonMaterialForm.value)
 
-       this.echontillonMaterialService.updateEchontillonMaterial(this.id, this.echontillonMaterial).subscribe(data => {
+       this.echontillonMaterialService.updateEchontillonMaterial(this.id, this.echontillonMaterialForm.value).subscribe(data => {
          console.log(data);
          this.goToEchontillonMaterialList();
        });
@@ -52,7 +59,10 @@ export class UpdateEchontillonMaterialsComponent implements OnInit {
 
      onSubmit()
      {
-       this.updateEchontillonMaterial();
+      if(this.echontillonMaterialForm.valid)
+      {
+        this.updateEchontillonMaterial();
+      }
      }
 
      getMaterials()

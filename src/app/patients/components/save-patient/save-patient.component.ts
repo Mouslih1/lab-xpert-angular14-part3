@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SavePatientComponent implements OnInit {
 
-  // patient: Patient = new Patient();
   genderOptions = Object.values(Sexe);
   savePatientForm: FormGroup;
 
