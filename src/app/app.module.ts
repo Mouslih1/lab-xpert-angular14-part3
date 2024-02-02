@@ -35,6 +35,8 @@ import { UpdateReactifComponent } from './reactifs/components/update-reactif/upd
 import { ResultsComponent } from './results/components/results/results.component';
 import { SaveResultComponent } from './results/components/save-result/save-result.component';
 import { UpdateResultComponent } from './results/components/update-result/update-result.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import{HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -70,11 +72,15 @@ import { UpdateResultComponent } from './results/components/update-result/update
     UpdateReactifComponent,
     ResultsComponent,
     SaveResultComponent,
-    UpdateResultComponent
+    UpdateResultComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

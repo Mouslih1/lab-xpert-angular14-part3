@@ -1,1 +1,89 @@
-<p>users works!</p>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Patient List</h4>
+                <h6>Manage your Patients</h6>
+            </div>
+            <div class="page-btn">
+                <a routerLink="save" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img">Add
+                    Patient</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-top">
+                   <!-- TODO: ADD SEARCH INPUT-->
+                    <div class="wordset">
+                        <ul>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
+                                        src="assets/img/icons/pdf.svg" alt="img"></a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
+                                        src="assets/img/icons/excel.svg" alt="img"></a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
+                                        src="assets/img/icons/printer.svg" alt="img"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="checkboxs">
+                                        <input type="checkbox" id="select-all">
+                                        <span class="checkmarks"></span>
+                                    </label>
+                                </th>
+                                <th>first name</th>
+                                <th>last name</th>
+                                <th>address</th>
+                                <th>phone</th>
+                                <th>city</th>
+                                <th>sexe</th>
+                                <th>date of birth</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td>
+                                    <label class="checkboxs">
+                                        <input type="checkbox">
+                                        <span class="checkmarks"></span>
+                                    </label>
+                                </td>
+                                
+                                <td>{{user.nom}}</td>
+                                <td>{{user.prenom}}</td>
+                                <td>{{user.address}}</td>
+                                <td>{{user.tel}}</td>
+                                <td>{{user.ville}}</td>
+                                <td>{{user.sexe}}</td>
+                                <td>{{user.dateNaissance}}</td>
+                                <td>{{user.role}}</td>
+                                <td>
+                                    <a class="me-3" routerLink="id/{{user.id}}">
+                                        <img src="assets/img/icons/edit.svg" alt="img">
+                                    </a>
+                                    <a (click)="deleteUser(user.id)"  class="me-3 confirm-text" >
+                                        <img src="assets/img/icons/delete.svg" alt="img">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

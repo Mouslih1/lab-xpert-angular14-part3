@@ -1,1 +1,85 @@
-<p>update-user works!</p>
+<div class="page-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <div class="page-title">
+          <h4>User Management</h4>
+          <h6>Update User</h6>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-body">
+          <form  [formGroup]="updateForm"  (ngSubmit)="onsbmit()">
+            <div class="row">
+              <div class="col-lg-6 col-sm-10 col-12">
+                <div class="form-group" [formGroup]="updateForm" >
+                  <label>First name</label>
+                  <input  placeholder="Fist name" name="prenom" type="text" formControlName="prenom" >
+                </div>
+                <div class="form-group" [formGroup]="updateForm">
+                  <label>Mobile</label>
+                  <input placeholder="Mobile" name="tel" type="text" formControlName="tel">
+                </div>
+              
+                     <div class="form-group">
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select  name="role" class="form-select"  formControlName="role">
+                            <option>Technicien</option>
+                            <option> Responsable</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Password</label>
+                      <input  placeholder="" name="password" type="password"  formControlName="password">
+                    </div>
+                    
+                    <div class="form-group">           
+                      <label>Address</label>
+                      <textarea  class="form-control" name="address" placeholder="Address ..." id="floatingTextarea" formControlName="address"></textarea>
+                    </div>
+                 
+              </div>
+              <div class="col-lg-6 col-sm-10 col-12">
+                <div class="form-group">
+                  <label>Last name</label>
+                  <input  placeholder="Last name" name="nom" type="text"  formControlName="nom">
+                </div>
+                <div class="form-group">
+                  <label for="quotation-date">Quotation Date</label>
+                  <div class="input-group">
+                    <input type="date" name="dateNaissance" id="quotation-date" placeholder="DD-MM-YYYY" class="form-control"  formControlName="dateNaissance">
+                  </div>
+                </div>
+              
+                <div class="form-group">
+                  <label>City</label>
+                  <input placeholder="City" name="ville" type="text" formControlName="ville">
+                </div>
+                <div class="form-group">
+                  <label>email</label>
+                  <input  placeholder="example@" name="email" type="text"  formControlName="email">
+                </div>
+                <div class="form-group">
+                  <label for="sexe">Sexe</label>
+                  <select  name="sexe" class="form-select"  formControlName="sexe">
+                  <option> MALE</option>
+                  <option> FEMALE</option>
+                  </select>
+
+              </div>
+              
+                
+            </div>
+              
+              <div class="col-lg-12">
+                <button type="submit" class="btn btn-submit me-2">Update</button>
+                <a  (click)="navigate()"  class="btn btn-cancel"  >Cancel</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
