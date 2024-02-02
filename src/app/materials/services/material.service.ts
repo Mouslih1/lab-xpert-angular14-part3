@@ -8,10 +8,13 @@ import { Observable } from "rxjs";
 })
 export class MaterialService {
 
-  private baseURL = "http://localhost:8888/api/v1/materials";
+  private baseURL = "http://localhost:8081/api/v1/materials";
   constructor( private httpClient: HttpClient ) { }
-  getMaterialsList() {
+  /*getMaterialsList() {
     return this.httpClient.get<Material[]>(this.baseURL);
+  }*/
+  getMaterialsList(): Observable<Material[]> {
+    return this.httpClient.get<Material[]>(`${this.baseURL}`);
   }
   saveMaterial(material: Material): Observable<Material>{
     return this.httpClient.post<Material>(this.baseURL + '/add', material);

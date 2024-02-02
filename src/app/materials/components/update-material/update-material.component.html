@@ -1,1 +1,59 @@
-<p>update-material works!</p>
+<div class="page-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <div class="page-title">
+        <h4>Material Management</h4>
+        <h6>Update Material</h6>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="row">
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Material Id</label>
+                <input [(ngModel)]="material.id" name="materialId" type="text" readonly  >
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Material Libelle</label>
+                <input [(ngModel)]="material.libelle" name="material" type="text">
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Stock Quantity</label>
+                <input [(ngModel)]="material.availableQuantity" name="quantity" #quantity="ngModel" type="text" pattern="^[0-9]*$">
+                <div *ngIf="quantity.errors?.['pattern']" style="color: red;">
+                  Please enter a valid number.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+              <div class="form-group">
+                <label>Material Price</label>
+                <input [(ngModel)]="material.price" name="price" #price="ngModel" type="text" pattern="^[0-9]*$">
+                <div *ngIf="price.errors?.['pattern']" style="color: red;">
+                  Please enter a valid number.
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-12">
+            <button href="javascript:void(0);" class="btn btn-submit me-2">Update</button>
+            <button (click)="gotoMaterialList() " class="btn btn-cancel">Cancel</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Reactif} from "../../Entity/Reactif";
+import { Observable } from "rxjs";
+import { Reactif } from "../../Entity/Reactif";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReactifService {
-  private baseURL = "http://localhost:8888/api/v1/reactifs";
+  private baseURL = "http://localhost:8081/api/v1/reactifs";
   constructor(private httpClient: HttpClient) { }
 
   getReactifsList(): Observable<Reactif[]>{
     return this.httpClient.get<Reactif[]>(this.baseURL);
-/*
-    console.log(this.httpClient.get<Reactif[]>(this.baseURL));
-*/
   }
 
   saveReactif(reactif: Reactif): Observable<Reactif> {

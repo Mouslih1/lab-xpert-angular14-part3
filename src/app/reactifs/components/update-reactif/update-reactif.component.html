@@ -55,7 +55,7 @@
             <div class="col-lg-4 col-sm-6 col-12">
               <div class="form-group">
                 <label>Choose Company</label>
-                <select class="form-select" [(ngModel)]="reactif.fournisseurs" name="company" [multiple]="fournisseurs">
+                <select class="form-select" [(ngModel)]="reactif.fournisseurs" name="company" [multiple]="fournisseurs" multiple>
                   <option [ngValue]="null" disabled> </option>
                   <option *ngFor="let fournisseur of fournisseurs" [ngValue]="fournisseur">
                     {{ fournisseur.societeName }}

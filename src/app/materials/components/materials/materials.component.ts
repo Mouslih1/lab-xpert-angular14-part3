@@ -27,6 +27,7 @@ export class MaterialsComponent implements OnInit {
     this.materialService.getMaterialsList().subscribe(data => {
       this.materials = data;
       this.materials.sort((a, b) => a.id - b.id);
+      console.log(this.materials);
     });
   }
 

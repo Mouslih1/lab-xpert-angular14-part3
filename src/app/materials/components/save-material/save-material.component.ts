@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Material} from "../../../Entity/Material";
+import {Router} from "@angular/router";
+import {MaterialService} from "../../services/material.service";
 
 @Component({
   selector: 'app-save-material',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaveMaterialComponent implements OnInit {
 
-  constructor() { }
+  // @ts-ignore
+  material: Material = new Material();
+  constructor(
+    private router: Router,
+    private materialService: MaterialService
+  ) { }
 
   ngOnInit(): void {
+    this.saveMaterial()
+  }
+  saveMaterial(){
+    this.materialService
+      .saveMaterial(this.material)
+      .subscribe(data => {
+        this.goToMaterialsList();
+      })
+  }
+  goToMaterialsList(){
+    this.router.navigate(['/materials']);
+  }
+  onSubmit(){
+    this.saveMaterial();
   }
 
 }

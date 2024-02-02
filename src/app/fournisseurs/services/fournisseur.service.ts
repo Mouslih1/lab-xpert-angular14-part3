@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {Fournisseur} from "../../Entity/Fournisseur";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { Fournisseur } from "../../Entity/Fournisseur";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FournisseurService {
 
-  private baseURL = "http://localhost:8888/api/v1/fournisseurs";
+  private baseURL = "http://localhost:8081/api/v1/fournisseurs";
   constructor(private httpClient: HttpClient) { }
 
   getFournisseursList(): Observable<Fournisseur[]> {

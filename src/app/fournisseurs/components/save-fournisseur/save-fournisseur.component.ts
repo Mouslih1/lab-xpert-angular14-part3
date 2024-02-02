@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Fournisseur } from "../../../Entity/Fournisseur";
 import { FournisseurService } from "../../services/fournisseur.service";
 import { Router } from '@angular/router';
-import { Validators } from '@angular/forms';
+import { Fournisseur } from "../../../Entity/Fournisseur";
 
 @Component({
   selector: 'app-save-fournisseur',
