@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Patient } from 'src/app/Entity/patient';
 import { PatientService } from '../../services/patient.service';
 import { Sexe } from 'src/app/Entity/sexe';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-save-patient',
@@ -11,18 +12,36 @@ import { Sexe } from 'src/app/Entity/sexe';
 })
 export class SavePatientComponent implements OnInit {
 
-  patient: Patient = new Patient();
+  // patient: Patient = new Patient();
   genderOptions = Object.values(Sexe);
+  savePatientForm: FormGroup;
 
-  constructor(private router: Router, private patientService: PatientService) { }
+  constructor(private router: Router, private patientService: PatientService, private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+    this.savePatientForm = this.fb.group({
+      prenom: [null, [Validators.required]],
+      nom: [null, [Validators.required]],
+      dateNaissance: [null, [Validators.required]],
+      ville: [null, [Validators.required]],
+      tel: [null, [Validators.required]],
+      age: [null, [Validators.required, Validators.min(0)]],
+      sexe: [null, [Validators.required]],
+      address: [null, [Validators.required]]
+    });
   }
 
   savePatient()
   {
-    this.patientService.savePatient(this.patient).subscribe(data => {
-      this.goToPatientList()
+    this.patientService.savePatient(this.savePatientForm.value).subscribe({
+      next: () => {
+        this.goToPatientList();
+        this.savePatientForm.reset();
+      },
+      error: (error) => {
+        console.error('An error occurred while saving the patient:', error);
+      }
     });
   }
 
@@ -33,6 +52,9 @@ export class SavePatientComponent implements OnInit {
 
   onSubmit()
   {
-    this.savePatient();
+    if (this.savePatientForm.valid)
+    {
+      this.savePatient();
+    }
   }
 }

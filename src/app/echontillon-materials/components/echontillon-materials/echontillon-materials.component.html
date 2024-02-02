@@ -72,14 +72,14 @@
                 <td>
                   {{ echM.echontillon.codeEchontillon }}
                 </td>
-                <td>{{ echM.id}}</td>
+                <td>{{ echM.material.libelle}}</td>
                 <td>{{ echM.quantity }}</td>
                 <td>{{ echM.priceTotal }}</td>
                 <td>
                   <a class="me-3">
-                    <img src="assets/img/icons/edit.svg" alt="img" />
+                    <img (click)="updateEchontillonMaterial(echM.id)" src="assets/img/icons/edit.svg" alt="img" />
                   </a>
-                  <a class="me-3 confirm-text">
+                  <a (click)="deleteEchontillonMaterial(echM.id)" class="me-3 confirm-text">
                     <img src="assets/img/icons/delete.svg" alt="img" />
                   </a>
                 </td>

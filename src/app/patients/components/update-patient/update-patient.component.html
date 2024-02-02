@@ -3,61 +3,97 @@
     <div class="page-header">
       <div class="page-title">
         <h4>Patient Management</h4>
-        <h6>Add Patient</h6>
+        <h6>Update Patient</h6>
       </div>
     </div>
 
     <div class="card">
       <div class="card-body">
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="updatePatientForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-lg-6 col-sm-10 col-12">
               <div class="form-group">
-                <label>First name</label>
-                <input [(ngModel)]="patient.prenom" placeholder="Fist name" name="prenom" type="text">
+                <input  [ngClass]="{'is-invalid': updatePatientForm.get('prenom').invalid && updatePatientForm.get('prenom').touched}"
+                 formControlName="prenom" class="form-control" placeholder="First name" name="prenom" type="text">
+                <div *ngIf="updatePatientForm.get('prenom').invalid && updatePatientForm.get('prenom').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('prenom').errors?.['required']">First name is required.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Last name</label>
+                <input [ngClass]="{'is-invalid': updatePatientForm.get('nom').invalid && updatePatientForm.get('nom').touched}"
+                formControlName="nom" class="form-control" placeholder="Last name" name="nom" type="text">
+                <div *ngIf="updatePatientForm.get('nom').invalid && updatePatientForm.get('nom').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('nom').errors?.['required']">Last name is required.</span>
+                </div>
               </div>
               <div class="form-group">
                 <label>Mobile</label>
-                <input [(ngModel)]="patient.tel" placeholder="Mobile" name="tel" type="text">
+                <input [ngClass]="{'is-invalid': updatePatientForm.get('tel').invalid && updatePatientForm.get('tel').touched}"
+                 formControlName="tel" class="form-control" placeholder="Mobile" name="tel" type="text">
+                <div *ngIf="updatePatientForm.get('tel').invalid && updatePatientForm.get('tel').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('tel').errors?.['required']">Mobile is required.</span>
+                </div>
               </div>
               <div class="form-group">
                 <label>Age</label>
-                <input [(ngModel)]="patient.age" class="form-control" min="0" placeholder="Age" name="age" type="number">
-              </div>
-              <div class="form-group">
-                <label>Address</label>
-                <textarea [(ngModel)]="patient.address" class="form-control" name="address" placeholder="Address ..." id="floatingTextarea"></textarea>
+                <input [ngClass]="{'is-invalid': updatePatientForm.get('age').invalid && updatePatientForm.get('age').touched}"
+                 formControlName="age" class="form-control" min="0" placeholder="Age" name="age" type="number">
+                <div *ngIf="updatePatientForm.get('age').invalid && updatePatientForm.get('age').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('age').errors?.['required']">Age is required.</span>
+                  <span *ngIf="updatePatientForm.get('age').errors?.['min']">Age must be greater than or equal to
+                    0.</span>
+                </div>
               </div>
             </div>
             <div class="col-lg-6 col-sm-10 col-12">
               <div class="form-group">
-                <label>Last name</label>
-                <input [(ngModel)]="patient.nom" placeholder="Last name" name="nom" type="text">
+                <label>Address</label>
+                <textarea [ngClass]="{'is-invalid': updatePatientForm.get('address').invalid && updatePatientForm.get('address').touched}"
+                 formControlName="address" class="form-control" name="address" placeholder="Address ..."
+                  id="floatingTextarea"></textarea>
+                <div *ngIf="updatePatientForm.get('address').invalid && updatePatientForm.get('address').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('address').errors?.['required']">Address is required.</span>
+                </div>
               </div>
               <div class="form-group">
-                <label for="quotation-date">Quotation Date</label>
-                <div class="input-group">
-                  <input [(ngModel)]="patient.dateNaissance" type="date" name="dateNaissance" id="quotation-date" placeholder="DD-MM-YYYY" class="form-control">
+                <label>Date of birth</label>
+                <input [ngClass]="{'is-invalid': updatePatientForm.get('dateNaissance').invalid && updatePatientForm.get('dateNaissance').touched}"
+                 formControlName="dateNaissance" class="form-control" type="date" name="dateNaissance" placeholder="DD-MM-YYYY"
+                  class="form-control">
+                <div
+                  *ngIf="updatePatientForm.get('dateNaissance').invalid && updatePatientForm.get('dateNaissance').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('dateNaissance').errors?.['required']">Date of birth is
+                    required.</span>
                 </div>
               </div>
               <div class="form-group">
                 <label>City</label>
-                <input [(ngModel)]="patient.ville" placeholder="City" name="ville" type="text">
+                <input [ngClass]="{'is-invalid': updatePatientForm.get('ville').invalid && updatePatientForm.get('ville').touched}"
+                 formControlName="ville" class="form-control" placeholder="City" name="ville" type="text">
+                <div *ngIf="updatePatientForm.get('ville').invalid && updatePatientForm.get('ville').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('ville').errors?.['required']">City is required.</span>
+                </div>
               </div>
               <div class="form-group">
-                <label >Gender</label>
-                <select [(ngModel)]="patient.sexe" name="sexe" class="form-select">
+                <label>Gender</label>
+                <select [ngClass]="{'is-invalid': updatePatientForm.get('prenom').invalid && updatePatientForm.get('prenom').touched}"
+                 formControlName="sexe" name="sexe" class="form-select">
                   <option *ngFor="let gender of genderOptions" [value]="gender">{{ gender }}</option>
                 </select>
+                <div *ngIf="updatePatientForm.get('sexe').invalid && updatePatientForm.get('sexe').touched" class="invalid-feedback">
+                  <span *ngIf="updatePatientForm.get('sexe').errors?.['required']">Gender is required.</span>
+                </div>
               </div>
             </div>
-            <div class="col-lg-12">
-              <button class="btn btn-submit me-2">Submit</button>
-              <button (click)="goToPatientList()" class="btn btn-cancel">Cancel</button>
-            </div>
+          </div>
+          <div class="col-lg-12">
+            <button class="btn btn-submit me-2" type="submit">Submit</button>
+            <button (click)="goToPatientList()" class="btn btn-cancel">Cancel</button>
           </div>
         </form>
       </div>
+
     </div>
   </div>
 </div>

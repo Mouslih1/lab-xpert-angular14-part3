@@ -16,7 +16,24 @@ export class EchontillonMaterialsComponent implements OnInit {
 
   ngOnInit(): void
   {
-
+    this.getEchontillonMaterial();
   }
 
+  getEchontillonMaterial()
+  {
+    this.echontillonMaterialService.getEchontillonMaterials().subscribe(data => {
+      console.log(this.echontillonMaterial);
+      this.echontillonMaterial = data;
+    })
+  }
+
+  deleteEchontillonMaterial(id: number)
+  {
+    this.echontillonMaterialService.deleteEchontillonMaterial(id).subscribe(() => this.getEchontillonMaterial());
+  }
+
+  updateEchontillonMaterial(id: number)
+  {
+    this.router.navigate(['echontillon-materials/update', id]);
+  }
 }

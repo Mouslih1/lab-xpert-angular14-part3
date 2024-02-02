@@ -9,13 +9,16 @@ import { MaterialService } from "../../services/material.service";
   styleUrls: ['./materials.component.css']
 })
 export class MaterialsComponent implements OnInit {
+
   materials: Material[];
+
   constructor(
     private router: Router,
     private materialService: MaterialService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     this.getMaterialsList();
   }
 
@@ -23,9 +26,11 @@ export class MaterialsComponent implements OnInit {
     this.router.navigate(['/materials/update', id]);
   }
 
-  getMaterialsList() {
+  getMaterialsList()
+  {
     this.materialService.getMaterialsList().subscribe(data => {
       this.materials = data;
+      console.log(data);
       this.materials.sort((a, b) => a.id - b.id);
     });
   }
