@@ -37,6 +37,8 @@ import { ResultsComponent } from './results/components/results/results.component
 import { SaveResultComponent } from './results/components/save-result/save-result.component';
 import { UpdateResultComponent } from './results/components/update-result/update-result.component';
 import { EchontillonAnalysesComponent } from './echontillons/components/echontillon-analyses/echontillon-analyses.component';
+import { AuthentificationComponent } from './authentification/components/authentification/authentification.component';
+import { NavbarComponent } from './navbar/components/navbar/navbar.component';
 
 
 @NgModule({
@@ -73,14 +75,16 @@ import { EchontillonAnalysesComponent } from './echontillons/components/echontil
     ResultsComponent,
     SaveResultComponent,
     UpdateResultComponent,
-    EchontillonAnalysesComponent
+    EchontillonAnalysesComponent,
+    AuthentificationComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

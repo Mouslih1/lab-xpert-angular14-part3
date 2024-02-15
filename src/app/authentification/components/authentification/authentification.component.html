@@ -1,0 +1,91 @@
+<div class="main-wrapper">
+  <div class="account-content">
+    <div class="login-wrapper">
+      <div class="login-content">
+        <div class="login-userset">
+          <div class="login-logo">
+            <img src="assets/img/logo.png" alt="img">
+          </div>
+          <div class="login-userheading">
+            <h3>Sign In</h3>
+            <h4>Please login to your account</h4>
+          </div>
+          <ng-container *ngIf="errorMessage">
+            <div class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+          </ng-container>
+          <form [formGroup]="loginFormGroup" (ngSubmit)="onLogin()">
+
+            <div class="form-login">
+              <label>Email</label>
+              <div class="form-addons">
+                <input
+                  [ngClass]="{'is-invalid': submitted && loginFormGroup.get('username').invalid && loginFormGroup.get('username').touched}"
+                  type="text" class="form-control" formControlName="username">
+                <img src="assets/img/icons/mail.svg" alt="img">
+                <div
+                  *ngIf="submitted && loginFormGroup.get('username').invalid && loginFormGroup.get('username').touched"
+                  class="invalid-feedback">
+                  <span *ngIf="loginFormGroup.get('username').errors?.['required']">
+                    Email is required.
+                  </span>
+                  <span *ngIf="loginFormGroup.get('username').errors?.['email']">
+                    Please enter email valid.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-login">
+              <label>Password</label>
+              <div class="pass-group">
+                <input
+                  [ngClass]="{'is-invalid': loginFormGroup.get('password').invalid && loginFormGroup.get('password').touched}"
+                  type="password" class="form-control" formControlName="password">
+                <span class="fas toggle-password fa-eye-slash"></span>
+                <div
+                *ngIf="submitted && loginFormGroup.get('password').invalid && loginFormGroup.get('password').touched"
+                class="invalid-feedback">
+                <span *ngIf="loginFormGroup.get('password').errors?.['required']">
+                  Password is required.
+                </span>
+              </div>
+              </div>
+            </div>
+
+            <div class="form-login">
+              <button type="button" (click)="onLogin()" class="btn btn-login">Sign In</button>
+            </div>
+
+            <div class="signinform text-center">
+              <h4>Don’t have an account? <a href="signup.html" class="hover-a">Sign Up</a></h4>
+            </div>
+          </form>
+          <div class="form-setlogin">
+            <h4>Or sign up with</h4>
+          </div>
+          <div class="form-sociallink">
+            <ul>
+              <li>
+                <a href="javascript:void(0);">
+                  <img src="assets/img/icons/google.png" class="me-2" alt="google">
+                  Sign Up using Google
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);">
+                  <img src="assets/img/icons/facebook.png" class="me-2" alt="google">
+                  Sign Up using Facebook
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="login-img">
+        <img src="assets/img/login.jpg" alt="img">
+      </div>
+    </div>
+  </div>
+</div>

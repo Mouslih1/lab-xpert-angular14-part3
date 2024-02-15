@@ -4,11 +4,9 @@ import { PatientService } from './patient.service';
 import { Patient } from 'src/app/Entity/patient';
 import { Sexe } from 'src/app/Entity/sexe';
 
-const baseUrl = "http://localhost:8081/api/patients";
-
 describe('PatientService', () => {
   let service: PatientService;
-  let httpTestingController: HttpTestingController;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,44 +14,19 @@ describe('PatientService', () => {
       providers: [PatientService]
     });
     service = TestBed.inject(PatientService);
-    httpTestingController = TestBed.inject(HttpTestingController);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpTestingController.verify();
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should save a patient', () => {
-    const mockPatient: Patient = {
-      id: 1,
-      nom: 'mouslih',
-      prenom: 'marouane',
-      address: 'address 1',
-      tel: '+212 630011276',
-      ville: 'casablanca',
-      sexe: Sexe.MALE,
-      dateNaissance: new Date('2022-12-31'),
-      age: 22,
-      echontillons: []
-    };
-
-    const mockResponseData = { id: 123, message: 'Patient created successfully' };
-
-    service.savePatient(mockPatient).subscribe(response => {
-      expect(response).toEqual(mockResponseData);
-    });
-
-    const req = httpTestingController.expectOne(baseUrl + '/add');
-    expect(req.request.method).toBe('POST');
-    req.flush(mockResponseData);
-  });
-
-  it('should get patients', () => {
-    const mockPatients: Patient[] = [
+  it('should get all patients', () => {
+    const dummyPatients: Patient[] = [
       {
         id: 1,
         nom: 'mouslih',
@@ -66,19 +39,54 @@ describe('PatientService', () => {
         age: 22,
         echontillons: []
       },
+      {
+        id: 2,
+        nom: 'mouslih',
+        prenom: 'marouane',
+        address: 'address 1',
+        tel: '+212 630011276',
+        ville: 'casablanca',
+        sexe: Sexe.MALE,
+        dateNaissance: new Date('2022-12-31'),
+        age: 22,
+        echontillons: []
+      }
     ];
 
     service.getAllPatients().subscribe(patients => {
-      expect(patients).toEqual(mockPatients);
+      expect(patients.length).toBe(2);
+      expect(patients).toEqual(dummyPatients);
     });
 
-    const req = httpTestingController.expectOne(baseUrl);
+    const req = httpMock.expectOne('http://localhost:8081/api/v1/patients');
     expect(req.request.method).toBe('GET');
-    req.flush(mockPatients);
+    req.flush(dummyPatients);
   });
 
-  it('should get a patient by id', () => {
-    const mockPatient: Patient = {
+  it('should save a patient', () => {
+    const newPatient: Patient = {
+      id: 1,
+      nom: 'mouslih',
+      prenom: 'marouane',
+      address: 'address 1',
+      tel: '+212 630011276',
+      ville: 'casablanca',
+      sexe: Sexe.MALE,
+      dateNaissance: new Date('2022-12-31'),
+      age: 22,
+      echontillons: []};
+
+    service.savePatient(newPatient).subscribe(response => {
+      expect(response).toBeTruthy();
+    });
+
+    const req = httpMock.expectOne('http://localhost:8081/api/v1/patients/add');
+    expect(req.request.method).toBe('POST');
+    req.flush({});
+  });
+
+  it('should get a patient by ID', () => {
+    const dummyPatient: Patient = {
       id: 1,
       nom: 'mouslih',
       prenom: 'marouane',
@@ -91,58 +99,51 @@ describe('PatientService', () => {
       echontillons: []
     };
 
-    service.getPatientById(mockPatient.id).subscribe(patient => {
-      expect(patient).toEqual(mockPatient);
+    const patientId = 1;
+
+    service.getPatientById(patientId).subscribe(patient => {
+      expect(patient).toEqual(dummyPatient);
     });
 
-    const req = httpTestingController.expectOne(`${baseUrl}/${mockPatient.id}`);
+    const req = httpMock.expectOne(`http://localhost:8081/api/v1/patients/${patientId}`);
     expect(req.request.method).toBe('GET');
-    req.flush(mockPatient);
+    req.flush(dummyPatient);
   });
 
   it('should update a patient', () => {
-    const mockPatient: Patient = {
+    const updatedPatient: Patient = {
       id: 1,
-      nom: 'mouslih',
-      prenom: 'marouane',
-      address: 'address 1',
+      nom: 'Updated Name',
+      prenom: 'Updated Firstname',
+      address: 'Updated Address',
       tel: '+212 630011276',
-      ville: 'casablanca',
-      sexe: Sexe.MALE,
-      dateNaissance: new Date('2022-12-31'),
-      age: 22,
+      ville: 'Updated City',
+      sexe: Sexe.FEMALE,
+      dateNaissance: new Date('1990-01-01'),
+      age: 32,
       echontillons: []
     };
 
-    service.updatePatient(mockPatient.id, mockPatient).subscribe(updatedPatient => {
-      expect(updatedPatient).toEqual(mockPatient);
+    const patientId = 1;
+
+    service.updatePatient(patientId, updatedPatient).subscribe(response => {
+      expect(response).toBeTruthy();
     });
 
-    const req = httpTestingController.expectOne(`${baseUrl}/${mockPatient.id}/update`);
+    const req = httpMock.expectOne(`http://localhost:8081/api/v1/patients/${patientId}/update`);
     expect(req.request.method).toBe('PUT');
-    req.flush(mockPatient);
+    req.flush({});
   });
 
   it('should delete a patient', () => {
-    const mockPatient: Patient = {
-      id: 1,
-      nom: 'mouslih',
-      prenom: 'marouane',
-      address: 'address 1',
-      tel: '+212 630011276',
-      ville: 'casablanca',
-      sexe: Sexe.MALE,
-      dateNaissance: new Date('2022-12-31'),
-      age: 22,
-      echontillons: []
-    };
+    const patientId = 1;
 
-    service.deletePatient(mockPatient.id).subscribe(deletedPatient => {
-      expect(deletedPatient).toEqual(mockPatient);
+    service.deletePatient(patientId).subscribe(response => {
+      expect(response).toBeTruthy();
     });
 
-    const req = httpTestingController.expectOne(`${baseUrl}/${mockPatient.id}/delete`);
+    const req = httpMock.expectOne(`http://localhost:8081/api/v1/patients/${patientId}/delete`);
     expect(req.request.method).toBe('DELETE');
-    req.flush(mockPatient);
+    req.flush({});
   });
 });

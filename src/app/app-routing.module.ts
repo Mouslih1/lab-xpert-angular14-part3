@@ -21,6 +21,7 @@ import { UpdateEchontillonComponent } from './echontillons/components/update-ech
 import { EchontillonMaterialsComponent } from './echontillon-materials/components/echontillon-materials/echontillon-materials.component';
 import { SaveEchontillonMaterialsComponent } from './echontillon-materials/components/save-echontillon-materials/save-echontillon-materials.component';
 import { UpdateEchontillonMaterialsComponent } from './echontillon-materials/components/update-echontillon-materials/update-echontillon-materials.component';
+import { AuthentificationComponent } from './authentification/components/authentification/authentification.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'echontillon-materials', component: EchontillonMaterialsComponent},
   { path: 'echontillon-materials/save', component: SaveEchontillonMaterialsComponent},
   { path: 'echontillon-materials/update/:id', component: UpdateEchontillonMaterialsComponent},
+  { path: 'auth', component: AuthentificationComponent},
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 
 ];
