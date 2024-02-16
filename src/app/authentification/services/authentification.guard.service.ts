@@ -27,7 +27,19 @@ export class AuthentificationGuardService implements CanActivate {
         {
           return this.router.createUrlTree(['admin/dashboard'])
         }
-        //return true;
+        // if(isAuth)
+        // {
+        //   if(user.roles.includes(route.data['role'])) return true;
+        //   else if (user.roles.includes('Admin'))
+        //   {
+        //     return this.router.createUrlTree(['admin/dashboard']);
+        //   }else if(user.roles.includes('Technicien'))
+        //   {
+        //     return this.router.createUrlTree(['admin/patients']);
+        //   }else if(user.roles.includes('Responsable'))
+        //   {
+        //     return this.router.createUrlTree(['admin/dashboard'])
+        //   }
       }
 
       return this.router.createUrlTree(['auth']);
