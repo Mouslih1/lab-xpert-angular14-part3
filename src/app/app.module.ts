@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +39,7 @@ import { UpdateResultComponent } from './results/components/update-result/update
 import { EchontillonAnalysesComponent } from './echontillons/components/echontillon-analyses/echontillon-analyses.component';
 import { AuthentificationComponent } from './authentification/components/authentification/authentification.component';
 import { NavbarComponent } from './navbar/components/navbar/navbar.component';
+import { AuthentificationInterceptorService } from './authentification/services/authentification.interceptor.service';
 
 
 @NgModule({
@@ -86,7 +87,11 @@ import { NavbarComponent } from './navbar/components/navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthentificationInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

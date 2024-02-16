@@ -3,7 +3,7 @@ export class LoggerUser
   constructor(public username: string,
     public roles: string[],
     private _token: string,
-    private _expiration: Date)
+    public _expiration: Date)
   {}
 
   get token()

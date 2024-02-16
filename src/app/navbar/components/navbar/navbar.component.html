@@ -1,6 +1,6 @@
 <div class="main-wrapper">
 
-  <div class="header">
+  <div *ngIf="isAuthentication" class="header">
 
     <div class="header-left active">
       <a href="index.html" class="logo">
@@ -166,8 +166,8 @@
               <span class="user-img"><img src="assets/img/profiles/avator1.jpg" alt="">
                 <span class="status online"></span></span>
               <div class="profilesets">
-                <h6>John Doe</h6>
-                <h5>Admin</h5>
+                <h6>{{ name }}</h6>
+                <h5>{{ roles }}</h5>
               </div>
             </div>
             <hr class="m-0">
@@ -195,43 +195,43 @@
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="profile.html">My Profile</a>
         <a class="dropdown-item" href="generalsettings.html">Settings</a>
-        <a class="dropdown-item" href="signin.html">Logout</a>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>
 
   </div>
 
-  <div class="sidebar" id="sidebar">
+  <div *ngIf="isAuthentication" class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
       <div id="sidebar-menu" class="sidebar-menu">
-        <ul>
-          <li class="submenu">
+        <ul >
+          <li *ngIf="isAdmin || isRespo || isTech" class="submenu">
             <a routerLink="dashboard"><img src="assets/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
           </li>
-          <li class="submenu">
+          <li *ngIf="isAdmin || isRespo || isTech" class="submenu">
             <a routerLink="patients"><img src="assets/img/icons/users1.svg" alt="img"><span> Patients</span> </a>
           </li>
-          <li class="submenu">
+          <li *ngIf="isAdmin || isRespo || isTech" class="submenu">
             <a routerLink="echontillons"><img src="assets/img/icons/quotation1.svg" alt="img"><span> Echontillons</span> </a>
           </li>
-          <li class="submenu">
+          <li *ngIf="isAdmin || isRespo || isTech" class="submenu">
             <a routerLink="echontillon-materials"><img src="assets/img/icons/quotation1.svg" alt="img"><span> Effect Material to echontillon</span> </a>
           </li>
 
-          <li  class="submenu">
-            <a routerLink="/fournisseurs">
+          <li *ngIf="isAdmin || isRespo" class="submenu">
+            <a  routerLink="fournisseurs">
               <img src="assets/img/icons/product.svg" alt="img">
               <span> Fournisseurs</span>
             </a>
           </li>
-          <li  class="submenu">
-            <a routerLink="/reactifs">
+          <li *ngIf="isAdmin || isRespo || isTech"  class="submenu">
+            <a routerLink="reactifs">
               <img src="assets/img/icons/transfer1.svg" alt="img">
               <span> Reactifs</span>
             </a>
           </li>
-          <li  class="submenu">
-            <a routerLink="/materials">
+          <li *ngIf="isAdmin || isRespo" class="submenu">
+            <a routerLink="materials">
               <img src="assets/img/icons/product.svg" alt="img">
               <span> Material</span>
             </a>
@@ -241,3 +241,5 @@
     </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>
